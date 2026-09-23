@@ -1,0 +1,159 @@
+[
+    {
+        "type": "cards",
+        "question": "Как ты предпочитаешь проводить свободное время?",
+        "answers": [
+            { "image": "books.png", "text": "Чтение и обучение" },
+            { "image": "sport.png", "text": "Спорт и экстрим" },
+            { "image": "games.png", "text": "Гейминг и кино" },
+            { "image": "travel.png", "text": "Путешествия" }
+        ],
+        "chance": 1.0
+    },
+    {
+        "type": "swipe",
+        "question": "Свайпни карточку",
+        "image": "teamwork.png",
+        "text": "Тебе нравится работать в большой команде?",
+        "chance": 1.0
+    },
+    {
+        "type": "compare",
+        "question": "Какая атмосфера тебе ближе для работы?",
+            "left": { "image": "office.png", "text": "Шумный современный офис" },
+            "right": { "image": "home.png", "text": "Тихая домашняя обстановка" },
+        "chance": 1.0
+    },
+    {
+        "type": "rate",
+        "question": "Насколько для тебя важен высокий уровень заработка при выборе дела?",
+        "chance": 1.0
+    },
+    {
+        "type": "cards",
+        "question": "Какое направление в науке тебя больше привлекает?",
+        "answers": [
+                { "image": "space.png", "text": "Космос и астрономия" },
+                { "image": "crypto.png", "text": "Блокчейн и финансы" },
+                { "image": "bio.png", "text": "Генетика и медицина" },
+                { "image": "ai.png", "text": "Искусственный интеллект" }
+        ],
+        "chance": 1.0
+    },
+    {
+        "type": "swipe",
+        "question": "Свайпни карточку",
+            "image": "public_speaking.png",
+        "text": "Ты любишь выступать перед большой аудиторией?",
+        "chance": 1.0
+    },
+    {
+        "type": "compare",
+        "question": "Что тебе важнее при создании продукта?",
+        "left": { "image": "design.png", "text": "Красивый дизайн" },
+        "right": { "image": "logic.png", "text": "Удобный функционал" },
+        "chance": 1.0
+    },
+    {
+        "type": "rate",
+        "question": "Насколько легко ты адаптируешься к резким изменениям в планах?",
+        "chance": 1.0
+    },
+    {
+        "type": "cards",
+        "question": "Какой стиль работы тебе ближе?",
+        "answers": [
+            { "image": "solo.png", "text": "Работать самостоятельно" },
+            { "image": "teamwork.png", "text": "Работать в команде" },
+            { "image": "leader.png", "text": "Руководить другими" },
+            { "image": "freelance.png", "text": "Свободный график" }
+        ],
+        "chance": 1.0
+    },
+    {
+        "type": "swipe",
+        "question": "Свайпни карточку",
+        "image": "risk.png",
+        "text": "Ты готов рискнуть ради возможности получить большую награду?",
+        "chance": 1.0
+    },
+    {
+        "type": "compare",
+        "question": "Что тебе ближе при решении проблемы?",
+        "left": { "image": "logic.png", "text": "Анализировать и просчитывать" },
+        "right": { "image": "creative.png", "text": "Придумывать нестандартное решение" },
+        "chance": 1.0
+    },
+    {
+        "type": "rate",
+        "question": "Насколько тебе важно получать признание за свою работу?",
+        "chance": 1.0
+    },
+    {
+        "type": "cards",
+        "question": "Какая сфера творчества тебе интереснее?",
+        "answers": [
+            { "image": "music.png", "text": "Музыка" },
+            { "image": "art.png", "text": "Рисование и искусство" },
+            { "image": "video.png", "text": "Видео и кино" },
+            { "image": "writing.png", "text": "Писательство" }
+        ],
+        "chance": 1.0
+    },
+    {
+        "type": "swipe",
+        "question": "Свайпни карточку",
+        "image": "competition.png",
+        "text": "Тебе нравится соревноваться с другими?",
+        "chance": 1.0
+    },
+    {
+        "type": "compare",
+        "question": "Что тебе больше подходит?",
+        "left": { "image": "stability.png", "text": "Стабильность и предсказуемость" },
+        "right": { "image": "advent.png", "text": "Перемены и приключения" },
+        "chance": 1.0
+    },
+    {
+        "type": "rate",
+        "question": "Насколько ты готов долго работать ради большой цели?",
+        "chance": 1.0
+    },
+    {
+        "type": "cards",
+        "question": "Какой тип задач тебе интереснее?",
+        "answers": [
+            { "image": "programming.png", "text": "Создавать и программировать" },
+            { "image": "business.png", "text": "Развивать бизнес" },
+            { "image": "design.png", "text": "Создавать визуал" },
+            { "image": "research.png", "text": "Исследовать и изучать" }
+        ],
+        "chance": 1.0
+    },
+    {
+        "type": "swipe",
+        "question": "Свайпни карточку",
+        "image": "leadership.png",
+        "text": "Тебе комфортно брать ответственность за решения всей команды?",
+        "chance": 1.0
+    },
+    {
+        "type": "compare",
+        "question": "Что тебе ближе?",
+        "left": { "image": "planning.png", "text": "Планировать всё заранее" },
+        "right": { "image": "improvisation.png", "text": "Действовать по ситуации" },
+        "chance":1.0
+    },
+    {
+        "type": "rate",
+        "question": "Насколько тебе важно постоянно развиваться и осваивать новые навыки?",
+        "chance": 1.0
+    },
+    {
+        "type": "chance",
+        "question": "7 or 6",
+        "left": { "text": "7", "image": "Sech_sieben.png"},
+        "right": { "text": "6", "image": "Sech_sieben.png"},
+        "chance": 0.05
+    }
+]

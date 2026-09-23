@@ -1,0 +1,201 @@
+/* =========================
+   TABLET / SMALL DESKTOP
+========================= */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
+    .heroImage {
+        width: 320px;
+        height: 320px;
+    }
+
+    .advantages {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .collegeBlock {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .collegeImage {
+        width: 100%;
+        height: 260px;
+    }
+
+    .cardsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+    }
+
+    .choiceCard img {
+        height: 160px;
+    }
+
+    .compareBlock {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .compareCard img {
+        height: 240px;
+    }
+
+    .swipeCard.single {
+        width: min(360px, 90%);
+    }
+
+    .testPage {
+        padding: 120px 20px 40px;
+    }
+
+    .testFooter {
+        gap: 25px;
+        padding: 50px 20px;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    header img {
+        display: none;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    main {
+        margin-top: 120px;
+    }
+
+    .heroText h1 {
+        font-size: 32px;
+    }
+
+    .advantages {
+        grid-template-columns: 1fr;
+    }
+
+    .headerBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .choiceCard {
+        border-radius: 12px;
+    }
+
+    .choiceCard img {
+        height: 120px;
+    }
+
+    .choiceCard h3 {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .compareCard img {
+        height: 180px;
+    }
+
+    .compareCard h3 {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .swipeCard.single {
+        width: 100%;
+        border-radius: 16px;
+    }
+
+    .swipeCard.single img {
+        height: 220px;
+    }
+
+    .rateBtn {
+        height: 50px;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .rateBlock {
+        max-width: 100%;
+        gap: 10px;
+    }
+
+    .testPage {
+        padding-top: 100px;
+    }
+
+    .testFooter {
+        flex-direction: column;
+        gap: 25px;
+        padding: 45px 20px;
+    }
+
+    .testFooter img {
+        width: 100%;
+        max-width: 320px;
+        height: 190px;
+    }
+
+    .FirstBlock {
+        font-size: 20px;
+    }
+}
+
+/* =========================
+   EXTRA SMALL PHONES (≤400px)
+========================= */
+@media (max-width: 400px) {
+    .heroText h1 {
+        font-size: 26px;
+    }
+
+    .heroText p {
+        font-size: 14px;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .choiceCard img {
+        height: 150px;
+    }
+
+    .swipeCard.single img {
+        height: 200px;
+    }
+
+    .compareCard img {
+        height: 160px;
+    }
+}

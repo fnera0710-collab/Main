@@ -1,0 +1,735 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-weight: 600;
+}
+
+body{
+    background:white;
+    color:#111;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header{
+    height:80px;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 30px;
+    background:white;
+    border-bottom:1px solid #eee;
+    z-index:100;
+}
+
+header img{
+    width:50px;
+    height:50px;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+nav a{
+    text-decoration:none;
+    color:black;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#111;
+    transition:0.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+.headerBtn{
+    background:#111;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+main{
+    margin-top:80px;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:80px;
+    width:90%;
+    margin:auto;
+}
+
+.heroText{
+    max-width:500px;
+}
+
+.heroText h1{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+.heroText p{
+    margin-bottom:30px;
+    line-height:1.7;
+}
+
+.heroText button{
+    padding:15px 40px;
+    border:none;
+    border-radius:12px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+.heroImage{
+    width:700px;
+    height:500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.advantages{
+    width:90%;
+    margin:auto;
+    padding:80px 0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#f5f5f5;
+    padding:30px;
+    border-radius:15px;
+}
+
+.Hehe{
+    text-decoration: none;
+    font-size: 20px;
+    color: #2e2e2e;
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+.about{
+    background:#2e2e2e;
+    color:white;
+    padding:100px 5%;
+}
+
+.about h2{
+    margin-bottom:40px;
+}
+
+.collegeBlock{
+    display:flex;
+    gap:50px;
+    align-items:center;
+}
+
+.collegeImage{
+    width:500px;
+    height:350px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.collegeInfo{
+    flex:1;
+}
+
+.collegeInfo h3,
+.collegeInfo h4{
+    margin-bottom:15px;
+    margin-top:15px;
+}
+
+.sliderButtons{
+    margin-top:30px;
+    display:flex;
+    gap:10px;
+}
+
+.sliderButtons button{
+    width:50px;
+    height:50px;
+    border:none;
+    cursor:pointer;
+    border-radius:10px;
+}
+
+footer{
+    background:#2e2e2e;
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.contactBlock{
+    margin-top:25px;
+    display:inline-block;
+    background:#444;
+    padding:20px 40px;
+    border-radius:15px;
+}
+
+.testFooter{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:50px;
+    padding:70px 5%;
+    background:#2e2e2e;
+    color:white;
+}
+
+.testFooter img{
+    width:260px;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.testFooterContent{
+    text-align:center;
+}
+
+.testFooterContent h2{
+    margin-bottom:25px;
+}
+
+/* ===== COMBINED TRANSITIONS ===== */
+.heroText button,
+.sliderButtons button,
+.headerBtn,
+nav a,
+.card,
+.contactBlock,
+.collegeImage,
+.finishBtn{
+    transition:0.3s ease;
+}
+
+/* ===== COMBINED WILL-CHANGE ===== */
+.choiceCard,
+.compareCard,
+.rateBtn,
+.swipeCard.single{
+    will-change: transform;
+}
+
+/* ===== HOVER EFFECTS ===== */
+.heroText button:hover,
+.headerBtn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.sliderButtons button:hover{
+    transform:translateY(-3px);
+    background:#ececec;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+}
+
+.collegeImage:hover{
+    transform:scale(1.02);
+}
+
+.compareCard:hover{
+    transform:scale(1.02);
+}
+
+.rateBtn:hover{
+    transform:translateY(-3px);
+}
+
+.swipeYes:hover{
+    background:#e7ffe7;
+}
+
+.swipeNo:hover{
+    background:#ffe7e7;
+}
+
+.finishBtn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+/* ===== ACTIVE EFFECTS (unified) ===== */
+.heroText button:active,
+.headerBtn:active,
+.sliderButtons button:active,
+.compareCard:active,
+.choiceCard:active,
+.rateBtn:active,
+.finishBtn:active{
+    transform:scale(0.96);
+    transition:transform 0.12s ease;
+}
+
+/* ===== KEYFRAMES (only fadeUp and questionIn) ===== */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes questionIn{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(0.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes flashSoft{
+    0%{background:rgba(0,0,0,0)}
+    40%{background:rgba(0,255,120,0.08)}
+    100%{background:rgba(0,0,0,0)}
+}
+
+/* ===== ANIMATIONS ===== */
+.heroText,
+.heroImage{
+    animation:fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card{
+    opacity:0;
+    animation:fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card:nth-child(1){animation-delay:0.2s}
+.card:nth-child(2){animation-delay:0.35s}
+.card:nth-child(3){animation-delay:0.5s}
+.card:nth-child(4){animation-delay:0.65s}
+
+.collegeBlock,
+.contactBlock{
+    animation:fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== TEST PAGE ===== */
+.testPage{
+    max-width:1200px;
+    margin:auto;
+    padding:140px 20px 50px;
+}
+
+.progressBlock{
+    margin-bottom:50px;
+}
+
+.progressBar{
+    height:10px;
+    background:#ececec;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progressFill{
+    height:100%;
+    background:#111;
+    transition:width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressBlock p{
+    margin-top:10px;
+    color:#999;
+    font-size:14px;
+}
+
+.questionContainer{
+    animation:fadeUp .5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.questionContainer h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+/* ===== CARDS GRID (improved layout) ===== */
+.cardsGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.choiceCard{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.choiceCard:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.choiceCard:active{
+    transform:scale(0.95);
+    transition:transform 0.1s ease;
+}
+
+.choiceCard img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    transition:transform 0.3s ease;
+}
+
+.choiceCard:hover img{
+    transform:scale(1.05);
+}
+
+.choiceCard h3{
+    padding:20px;
+    text-align:center;
+}
+
+/* ===== SWIPE (centered card) ===== */
+.swipeButtons{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+}
+
+.swipeCard{
+    width:350px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    position:relative;
+}
+
+.swipeCard img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.swipeCard h3{
+    padding:20px;
+}
+
+.swipeCard span{
+    display:block;
+    text-align:center;
+    padding-bottom:20px;
+}
+
+.swipeCard.single{
+    margin:0 auto;
+    touch-action:none;
+    user-select:none;
+    -webkit-user-select:none;
+    transition:transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+}
+
+.swipeCard.single:active{
+    cursor:grabbing;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.swipeCard.single::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    pointer-events:none;
+    opacity:0;
+    transition:0.25s ease;
+}
+
+.swipeCard.single[data-state="yes"]::before{
+    background:rgba(0,255,0,0.12);
+    opacity:1;
+}
+
+.swipeCard.single[data-state="no"]::before{
+    background:rgba(255,0,0,0.12);
+    opacity:1;
+}
+
+/* ===== SWIPE HINTS ===== */
+.swipeHints{
+    display:flex;
+    justify-content:space-between;
+    padding:0 20px 15px;
+    font-size:14px;
+    color:#999;
+}
+
+/* ===== COMPARE ===== */
+.compareBlock{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    max-width:800px;
+    margin:0 auto;
+}
+
+.compareCard{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.compareCard:hover{
+    transform:scale(1.03);
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.compareCard:active{
+    transform:scale(0.95);
+    transition:transform 0.1s ease;
+}
+
+.compareCard img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    transition:transform 0.3s ease;
+}
+
+.compareCard h3{
+    padding:25px;
+    text-align:center;
+}
+
+/* ===== RATE ===== */
+.rateBlock{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    max-width:600px;
+    margin:auto;
+}
+
+.rateBtn{
+    height:60px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+}
+
+.rateBtn:hover{
+    background:#f5f5f5;
+}
+
+.rateBtn:active{
+    transform:scale(0.95);
+    transition:transform 0.1s ease;
+}
+
+/* ===== QUESTION WRAPPER ANIMATION ===== */
+.questionWrapper{
+    animation:questionIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.flash{
+    animation:flashSoft 0.35s ease;
+}
+
+/* ===== FINISH ===== */
+.finishBox{
+    animation:fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.finishBtn{
+    all:unset;
+    width:200px;
+    height:40px;
+    background-color:#111;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    text-align:center;
+    justify-content:center;
+    color:#fff;
+    font-size:14px;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+.FirstBlock{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    margin-top:200px;
+}
+
+.finishBox{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.nameBox,
+.loadingBox,
+.resultsBox{
+    width:100%;
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.nameBox h1,
+.loadingBox h1,
+.resultsBox h1{
+    margin-bottom:15px;
+}
+
+.nameBox p,
+.loadingBox p{
+    color:#777;
+}
+
+.nameInput{
+    width:100%;
+    max-width:420px;
+    height:52px;
+    margin:25px 0 15px;
+    padding:0 18px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font:inherit;
+}
+
+.finishActions{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.skipBtn{
+    height:40px;
+    padding:0 25px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:white;
+    cursor:pointer;
+}
+
+.finishBtn:disabled{
+    cursor:not-allowed;
+    opacity:.45;
+}
+
+.loadingLine{
+    width:100%;
+    max-width:460px;
+    height:10px;
+    margin:30px 0 15px;
+    border-radius:20px;
+    background:linear-gradient(90deg, #7b2cbf 0%, #c77dff 50%, #7b2cbf 100%);
+    background-size:200% 100%;
+    animation:loadingMove 1.4s linear infinite;
+}
+
+@keyframes loadingMove{
+    from{background-position:0 0}
+    to{background-position:200% 0}
+}
+
+.resultsBox{
+    align-items:stretch;
+}
+
+.resultList{
+    width:100%;
+    margin-top:30px;
+    text-align:left;
+}
+
+.resultItem{
+    margin-bottom:20px;
+}
+
+.resultHeader{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.resultScale{
+    position:relative;
+    height:12px;
+    border-radius:20px;
+    background:#ececec;
+}
+
+.resultFill{
+    height:100%;
+    border-radius:20px;
+    background:#8e2de2;
+    transition:width .5s ease;
+}
+
+.scaleStart,
+.scaleEnd{
+    position:absolute;
+    top:16px;
+    color:#999;
+    font-size:12px;
+}
+
+.scaleStart{left:0}
+.scaleEnd{right:0}
+
+.recommendation{
+    margin-top:35px;
+    line-height:1.7;
+    text-align:left;
+}
