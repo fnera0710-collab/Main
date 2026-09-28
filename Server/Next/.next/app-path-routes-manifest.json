@@ -1,6 +1,7 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/api/answers/route": "/api/answers",
   "/page": "/",
   "/test/page": "/test"
 }

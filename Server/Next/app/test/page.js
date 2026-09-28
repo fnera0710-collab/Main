@@ -136,11 +136,17 @@ export default function TestPage() {
         setUserName(name);
         setFinishStep("loading");
 
-        const saved = await sendAnswers(data, name);
+        try {
+            const saved = await sendAnswers(data, name);
 
-        setResults(saved?.result || {});
-        data = [];
-        setFinishStep("results");
+            setResults(saved?.result || {});
+            data = [];
+            setFinishStep("results");
+        } catch (error) {
+            console.error("Не удалось сохранить ответы:", error);
+            setFinishStep("name");
+            window.alert("Не удалось сохранить ответы в базу данных. Проверьте подключение MongoDB и попробуйте ещё раз.");
+        }
     }
 
     // Экран после завершения

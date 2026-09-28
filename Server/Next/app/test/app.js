@@ -1,7 +1,6 @@
 
 import questionsData from "../question.json";
 
-const ANSWERS_STORAGE_KEY = "answers";
 const backupQuestions = [];
 
 const scoringMap = [
@@ -67,9 +66,16 @@ async function sendAnswers(data, name = "") {
         answers: data
     };
 
-    const savedAnswers = JSON.parse(localStorage.getItem(ANSWERS_STORAGE_KEY) || "[]");
-    savedAnswers.push(answerData);
-    localStorage.setItem(ANSWERS_STORAGE_KEY, JSON.stringify(savedAnswers));
+    const response = await fetch("/api/answers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(answerData)
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Не удалось сохранить ответы");
+    }
 
     return { id, unique_user_id, result: calculateUserStats(answerData) };
 }
