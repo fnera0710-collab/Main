@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 const answerSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     unique_user_id: { type: String, required: true },
@@ -11,45 +13,77 @@ const answerSchema = new mongoose.Schema({
 
 const Answer = mongoose.models.Answer || mongoose.model("Answer", answerSchema);
 
-const globalForMongo = globalThis;
+const mongoCache = globalThis.mongoCache ??= { promise: null };
 
 async function connectToDatabase() {
-    if (mongoose.connection.readyState === 1) return;
-
-    if (!process.env.MONGODB_URL) {
-        throw new Error("MONGODB_URL не настроен");
+    if (mongoose.connection.readyState === 1) {
+        return mongoose.connection;
     }
 
-    globalForMongo.mongoConnection ??= mongoose.connect(process.env.MONGODB_URL, {
-        serverSelectionTimeoutMS: 10000
-    }).catch((error) => {
-        globalForMongo.mongoConnection = undefined;
-        throw error;
-    });
+    const uri = process.env.MONGODB_URL || process.env.MONGODB_URI || process.env.MONGO_URI;
+    if (!uri?.trim()) {
+        throw new Error("MongoDB connection string is not configured");
+    }
 
-    await globalForMongo.mongoConnection;
+    if (mongoose.connection.readyState !== 2) {
+        mongoCache.promise = null;
+    }
+
+    if (!mongoCache.promise) {
+        mongoCache.promise = mongoose.connect(uri.trim(), {
+            serverSelectionTimeoutMS: 10000,
+            connectTimeoutMS: 10000,
+            maxPoolSize: 10
+        }).then(() => mongoose.connection).catch((error) => {
+            mongoCache.promise = null;
+            throw error;
+        });
+    }
+
+    return mongoCache.promise;
 }
 
 export async function POST(request) {
+    let payload;
+
     try {
-        const payload = await request.json();
+        payload = await request.json();
+    } catch {
+        return NextResponse.json({ error: "Request body must be valid JSON" }, { status: 400 });
+    }
 
-        if (!payload.id || !Array.isArray(payload.answers) || !payload.unique_user_id) {
-            return NextResponse.json({ error: "Некорректные данные" }, { status: 400 });
-        }
+    if (
+        !payload ||
+        typeof payload.id !== "string" || !payload.id.trim() ||
+        typeof payload.unique_user_id !== "string" || !payload.unique_user_id.trim() ||
+        !Array.isArray(payload.answers)
+    ) {
+        return NextResponse.json({ error: "id, unique_user_id, and answers are required" }, { status: 400 });
+    }
 
+    const timestamp = payload.timestamp ? new Date(payload.timestamp) : new Date();
+    if (Number.isNaN(timestamp.getTime())) {
+        return NextResponse.json({ error: "timestamp must be a valid date" }, { status: 400 });
+    }
+
+    try {
         await connectToDatabase();
         const answer = await Answer.create({
-            id: payload.id,
-            unique_user_id: payload.unique_user_id,
+            id: payload.id.trim(),
+            unique_user_id: payload.unique_user_id.trim(),
             name: typeof payload.name === "string" ? payload.name.trim() : "",
-            timestamp: payload.timestamp || new Date(),
+            timestamp,
             answers: payload.answers
         });
 
         return NextResponse.json({ id: answer.id }, { status: 201 });
     } catch (error) {
-        console.error("Ошибка сохранения ответов:", error);
-        return NextResponse.json({ error: "Не удалось сохранить ответы" }, { status: 500 });
+        if (error?.code === 11000) {
+            return NextResponse.json({ error: "An answer with this id already exists" }, { status: 409 });
+        }
+
+        // Avoid logging the connection error object because it may contain the MongoDB URI.
+        console.error("[api/answers] Save failed:", error?.name || "Error", error?.code || "");
+        return NextResponse.json({ error: "Could not save answers" }, { status: 500 });
     }
 }
