@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "vercel-build": "npm run prepare && next build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
     "npx": "npx next dev --webpack"
