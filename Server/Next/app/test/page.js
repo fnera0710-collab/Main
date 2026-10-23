@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { fetchQuestions, sendAnswers } from "./app";
 
 let data = [];
@@ -38,7 +38,7 @@ export default function TestPage() {
     const [feedback, setFeedback] = useState(null);
     const [animKey, setAnimKey] = useState(0);
     const [dragX, setDragX] = useState(0);
-    const [isDragging, setIsDragging] = useState(false);
+    const dragStartX = useRef(null);
     const [transitioning, setTransitioning] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -257,8 +257,7 @@ export default function TestPage() {
                     next: isCurrentLast ? goFinish : goNext,
                     dragX,
                     setDragX,
-                    isDragging,
-                    setIsDragging,
+                    dragStartX,
                     finish: goFinish
                 })}
             </div>
@@ -301,33 +300,35 @@ function cardsQuestion(title, cards) {
 ========================= */
 function swipeQuestion(title, image, text) {
     return {
-        render({ next, dragX, setDragX, isDragging, setIsDragging }) {
+        render({ next, dragX, setDragX, dragStartX }) {
             function onDown(e) {
-                setIsDragging(true);
+                dragStartX.current = e.clientX;
                 e.currentTarget.setPointerCapture(e.pointerId);
             }
 
             function onMove(e) {
-                if (!isDragging) return;
-                setDragX((prev) => {
-                    let nextX = prev + e.movementX;
-                    if (nextX > 180) nextX = 180;
-                    if (nextX < -180) nextX = -180;
-                    return nextX;
-                });
+                if (dragStartX.current === null) return;
+                setDragX(Math.max(-180, Math.min(180, e.clientX - dragStartX.current)));
             }
 
             function endSwipe(e) {
-                setIsDragging(false);
+                if (dragStartX.current === null) return;
+                const distance = e.clientX - dragStartX.current;
+                dragStartX.current = null;
                 try {
                     e.currentTarget.releasePointerCapture(e.pointerId);
                 } catch {}
 
-                if (dragX > 120) {
+                if (distance > 120) {
                     next(1);
-                } else if (dragX < -120) {
+                } else if (distance < -120) {
                     next(2);
                 }
+                setDragX(0);
+            }
+
+            function cancelSwipe() {
+                dragStartX.current = null;
                 setDragX(0);
             }
 
@@ -342,7 +343,7 @@ function swipeQuestion(title, image, text) {
                         onPointerDown={onDown}
                         onPointerMove={onMove}
                         onPointerUp={endSwipe}
-                        onPointerCancel={endSwipe}
+                        onPointerCancel={cancelSwipe}
                     >
                         <img
                             src={imagePath(image)}

@@ -70,10 +70,10 @@
 ========================= */
 @media (max-width: 600px) {
     header {
-        flex-direction: column;
+        position: sticky;
         height: auto;
-        padding: 12px;
-        gap: 10px;
+        min-height: 56px;
+        padding: 8px 12px;
     }
 
     header img {
@@ -81,13 +81,33 @@
     }
 
     nav {
+        width: 100%;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    nav a {
+        font-size: clamp(11px, 3vw, 13px);
+        white-space: nowrap;
     }
 
     main {
-        margin-top: 120px;
+        margin-top: 0;
+    }
+
+    .hero {
+        width: 100%;
+        min-height: 0;
+        padding: 42px 16px;
+        gap: 24px;
+    }
+
+    .heroImage {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        aspect-ratio: 4 / 3;
     }
 
     .heroText h1 {
@@ -95,17 +115,59 @@
     }
 
     .advantages {
-        grid-template-columns: 1fr;
+        width: calc(100% - 28px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 40px 0;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .card h3 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .card p {
+        font-size: 13px;
+        line-height: 1.4;
     }
 
     .headerBtn {
-        width: 100%;
+        width: auto;
+        padding: 9px 11px;
         text-align: center;
     }
 
+    .about {
+        padding: 48px 16px;
+    }
+
+    .collegeImage {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .testPage {
+        padding: 24px 14px 48px;
+    }
+
+    .progressBlock {
+        margin-bottom: 24px;
+    }
+
+    .questionContainer h2 {
+        font-size: clamp(19px, 5.5vw, 24px);
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
     .cardsGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 440px;
+        gap: 8px;
     }
 
     .choiceCard {
@@ -113,30 +175,65 @@
     }
 
     .choiceCard img {
-        height: 120px;
+        display: block;
+        height: auto;
+        aspect-ratio: 4 / 3;
     }
 
     .choiceCard h3 {
-        padding: 10px;
-        font-size: 14px;
+        display: grid;
+        place-items: center;
+        min-height: 44px;
+        padding: 8px 6px;
+        font-size: clamp(12px, 3.4vw, 14px);
+        line-height: 1.25;
+    }
+
+    .compareBlock {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 440px;
+        gap: 8px;
     }
 
     .compareCard img {
-        height: 180px;
+        display: block;
+        height: auto;
+        aspect-ratio: 4 / 3;
     }
 
     .compareCard h3 {
-        padding: 15px;
-        font-size: 14px;
+        display: grid;
+        place-items: center;
+        min-height: 44px;
+        padding: 8px 6px;
+        font-size: clamp(12px, 3.4vw, 14px);
+        line-height: 1.25;
     }
 
     .swipeCard.single {
-        width: 100%;
+        width: min(100%, 320px);
         border-radius: 16px;
     }
 
     .swipeCard.single img {
-        height: 220px;
+        display: block;
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .swipeCard h3 {
+        padding: 12px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .swipeCard span {
+        padding-bottom: 12px;
+    }
+
+    .swipeHints {
+        padding: 0 12px 12px;
+        font-size: 12px;
     }
 
     .rateBtn {
@@ -150,8 +247,25 @@
         gap: 10px;
     }
 
-    .testPage {
-        padding-top: 100px;
+    .nameBox h1,
+    .loadingBox h1,
+    .resultsBox h1 {
+        font-size: clamp(24px, 7vw, 32px);
+    }
+
+    .finishActions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .finishBtn {
+        width: auto;
+        min-width: 130px;
+        padding: 0 18px;
+    }
+
+    .resultHeader {
+        gap: 12px;
     }
 
     .testFooter {
@@ -183,19 +297,12 @@
         font-size: 14px;
     }
 
-    .cardsGrid {
-        grid-template-columns: 1fr;
+    .hero {
+        padding-inline: 14px;
     }
 
-    .choiceCard img {
-        height: 150px;
-    }
-
-    .swipeCard.single img {
-        height: 200px;
-    }
-
-    .compareCard img {
-        height: 160px;
+    .choiceCard h3,
+    .compareCard h3 {
+        font-size: 12px;
     }
 }

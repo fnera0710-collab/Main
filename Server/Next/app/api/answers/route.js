@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import dns from "node:dns";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -23,6 +24,12 @@ async function connectToDatabase() {
     const uri = process.env.MONGODB_URL || process.env.MONGODB_URI || process.env.MONGO_URI;
     if (!uri?.trim()) {
         throw new Error("MongoDB connection string is not configured");
+    }
+
+    // The SRV lookup uses Node's DNS resolver, which may differ from the OS resolver.
+    const dnsServers = process.env.MONGODB_DNS_SERVERS?.split(",").map((server) => server.trim()).filter(Boolean);
+    if (uri.startsWith("mongodb+srv://") && dnsServers?.length) {
+        dns.setServers(dnsServers);
     }
 
     if (mongoose.connection.readyState !== 2) {
@@ -82,7 +89,12 @@ export async function POST(request) {
             return NextResponse.json({ error: "An answer with this id already exists" }, { status: 409 });
         }
 
-        // Avoid logging the connection error object because it may contain the MongoDB URI.
+        // Do not log the connection error object: it may contain credentials from the URI.
+        if (error?.message === "MongoDB connection string is not configured") {
+            console.error("[api/answers] MONGODB_URI is missing. Set it in .env.local or the deployment environment.");
+            return NextResponse.json({ error: "Database is not configured" }, { status: 503 });
+        }
+
         console.error("[api/answers] Save failed:", error?.name || "Error", error?.code || "");
         return NextResponse.json({ error: "Could not save answers" }, { status: 500 });
     }
